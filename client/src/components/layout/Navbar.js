@@ -2,17 +2,17 @@ import React, { Fragment, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
-import ContactContext from "../../context/contact/contactContext";
+import MealContext from "../../context/meal/mealContext";
 
 const Navbar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
-  const contactContext = useContext(ContactContext);
+  const mealContext = useContext(MealContext);
   const { isAuthenticated, logout, user } = authContext;
-  const { clearContacts } = contactContext;
+  const { clearMeals } = mealContext;
 
   const onLogout = () => {
     logout();
-    clearContacts();
+    clearMeals();
   };
   const authLinks = (
     <Fragment>
@@ -51,8 +51,8 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: "Contact keeper",
-  icon: "fas fa-id-card-alt",
+  title: "Meal keeper",
+  icon: "fas fa-utensils",
 };
 
 export default Navbar;

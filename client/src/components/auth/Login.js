@@ -47,7 +47,7 @@ export const Login = (props) => {
       <h1>
         Account <span className="text-primary">Login</span>
       </h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} autoComplete="on">
         <div className="form-group">
           <label htmlFor="email">Email Adress</label>
           <input
@@ -56,6 +56,7 @@ export const Login = (props) => {
             value={email}
             onChange={onChange}
             required
+            autoComplete="email"
           />
         </div>
         <div className="form-group">
@@ -66,6 +67,7 @@ export const Login = (props) => {
             value={password}
             onChange={onChange}
             required
+            autoComplete="current-password"
           />
         </div>
         <input

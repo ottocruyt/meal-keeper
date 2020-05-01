@@ -12,7 +12,8 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // routes
-app.use("/api/contacts", require("./routes/contacts"));
+app.use("/api/ingredients", require("./routes/ingredients"));
+app.use("/api/meals", require("./routes/meals"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
 

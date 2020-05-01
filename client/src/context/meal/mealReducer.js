@@ -1,50 +1,55 @@
 import {
-  GET_CONTACTS,
-  ADD_CONTACT,
-  DELETE_CONTACT,
+  GET_MEALS,
+  GET_ALL_INGREDIENTS,
+  ADD_MEAL,
+  DELETE_MEAL,
   SET_CURRENT,
   CLEAR_CURRENT,
-  UPDATE_CONTACT,
-  FILTER_CONTACTS,
+  UPDATE_MEAL,
+  FILTER_MEALS,
   CLEAR_FILTER,
-  CONTACT_ERROR,
-  CLEAR_CONTACTS,
+  MEAL_ERROR,
+  CLEAR_MEALS,
 } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
-    case GET_CONTACTS:
+    case GET_MEALS:
       return {
         ...state,
-        contacts: action.payload,
+        meals: action.payload,
         loading: false,
       };
-    case ADD_CONTACT:
+    case GET_ALL_INGREDIENTS:
       return {
         ...state,
-        contacts: [action.payload, ...state.contacts], // add to the top (most recent)
+        loading: false,
+        allIngredients: action.payload,
+      };
+    case ADD_MEAL:
+      return {
+        ...state,
+        meals: [action.payload, ...state.meals], // add to the top (most recent)
         loading: false,
       };
-    case DELETE_CONTACT:
+    case DELETE_MEAL:
       return {
         ...state,
-        contacts: state.contacts.filter(
-          (contact) => contact._id !== action.payload
+        meals: state.meals.filter((meal) => meal._id !== action.payload),
+        loading: false,
+      };
+    case UPDATE_MEAL:
+      return {
+        ...state,
+        meals: state.meals.map((meal) =>
+          meal._id === action.payload._id ? action.payload : meal
         ),
         loading: false,
       };
-    case UPDATE_CONTACT:
+    case CLEAR_MEALS:
       return {
         ...state,
-        contacts: state.contacts.map((contact) =>
-          contact._id === action.payload._id ? action.payload : contact
-        ),
-        loading: false,
-      };
-    case CLEAR_CONTACTS:
-      return {
-        ...state,
-        contacts: null,
+        meals: null,
         filtered: null,
         error: null,
         current: null,
@@ -60,12 +65,20 @@ export default (state, action) => {
         current: null,
       };
 
-    case FILTER_CONTACTS:
+    case FILTER_MEALS:
       return {
         ...state,
-        filtered: state.contacts.filter((contact) => {
+        filtered: state.meals.filter((meal) => {
           const regex = new RegExp(`${action.payload}`, "gi"); // global and case insensitive
-          return contact.name.match(regex) || contact.email.match(regex);
+          return (
+            meal.name.match(regex) ||
+            meal.ingredients
+              .map((object) => {
+                return object.ingredient;
+              })
+              .join(" ")
+              .match(regex)
+          );
         }),
       };
     case CLEAR_FILTER:
@@ -73,7 +86,7 @@ export default (state, action) => {
         ...state,
         filtered: null,
       };
-    case CONTACT_ERROR:
+    case MEAL_ERROR:
       return {
         ...state,
         error: action.payload,

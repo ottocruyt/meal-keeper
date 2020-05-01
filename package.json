@@ -21,6 +21,7 @@
     "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6",
+    "react-select-fast-filter-options": "^0.2.3",
     "uuid": "^7.0.3"
   },
   "devDependencies": {

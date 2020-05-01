@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 /* Global Styles */
 :root {
@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -304,10 +304,11 @@ input {
   color: #888;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='date'],
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
 select,
 textarea {
   display: block;
@@ -317,7 +318,7 @@ textarea {
   border: 1px solid #ccc;
 }
 
-input[type='submit'],
+input[type="submit"],
 button {
   font: inherit;
 }
@@ -342,6 +343,10 @@ h2,
 h3 {
   text-align: center;
 }
+/**
+table {
+  border-spacing: 0;
+}
 
 table th,
 table td {
@@ -352,7 +357,7 @@ table td {
 table th {
   background: var(--light-color);
 }
-
+**/
 /* Navbar */
 .navbar {
   display: flex;
@@ -398,6 +403,104 @@ table th {
 .item-exit-active {
   opacity: 0;
   transition: opacity 1000ms ease-in;
+}
+
+/* MEAL KEEPER CUSTOM */
+/* collapsible in meal item */
+
+.Collapsible {
+  cursor: pointer;
+}
+/***
+.ingredients-form {
+  display: table;
+  justify-content: center;
+}
+
+.ingredients-form input[type="number"] {
+  display: table-cell;
+  width: 20%;
+  float: left;
+  margin-left: 0.4;
+  margin-right: 0.5em;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0.3em;
+}
+
+.ingredients-form input[type="text"] {
+  display: table-cell;
+  width: 65%;
+  float: center;
+  margin-left: 0.5em;
+  margin-right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0.3em;
+}
+.ingredients-form a {
+  display: table-cell;
+  height: inherit;
+  width: auto;
+  float: right;
+  padding: 0.3em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.ingredients-form td {
+  display: table-cell;
+  margin: 0.4em;
+  padding: 0;
+}
+***/
+.ingredients-form ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+}
+.ingredients-form li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1em;
+  padding-left: 0;
+}
+.ingredients-form input,
+a {
+  margin: 0.1em;
+  font-size: 0.8rem;
+}
+.ingredients-form button {
+  margin: 0.1em;
+  font-size: 0.8rem;
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  cursor: pointer;
+}
+.ingredients-form input {
+  margin: 0.1em;
+  margin-left: 0;
+  font-size: 0.8rem;
+}
+.ingredients-form input[type="number"] {
+  width: 9ch;
+}
+
+#ingredients-form-add {
+  margin: 0.1em;
+  font-size: 0.8rem;
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  cursor: pointer;
+}
+#ingredients-form-add:focus {
+  outline: 0;
 }
 
 /* Mobile Styles */
