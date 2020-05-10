@@ -3,9 +3,6 @@ import Meals from "../meals/Meals";
 import MealForm from "../meals/MealForm";
 import MealFilter from "../meals/MealFilter";
 import AuthContext from "../../context/auth/authContext";
-import Planner from "../planner/Planner";
-import Groceries from "../groceries/Groceries";
-
 const Home = () => {
   const authContext = useContext(AuthContext);
   useEffect(() => {
@@ -14,12 +11,6 @@ const Home = () => {
   }, []);
   return (
     <Fragment>
-      <div>
-        <Planner />
-      </div>
-      <div>
-        <Groceries />
-      </div>
       <div className="grid-2">
         <div>
           <MealForm />

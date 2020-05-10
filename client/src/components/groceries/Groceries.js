@@ -41,6 +41,20 @@ export const Groceries = () => {
     groceries = getAllIngredientsSummedUp();
   }
 
+  if (
+    (groceries === null || groceries === undefined || groceries.length === 0) &&
+    !loading
+  ) {
+    return (
+      <Fragment>
+        <h2 className="text-primary">Groceries</h2>
+        <div className="text-center">
+          No groceries... Please select a meal in the planner.
+        </div>
+      </Fragment>
+    );
+  }
+
   return (
     <Fragment>
       <h2 className="text-primary">Groceries</h2>

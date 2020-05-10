@@ -7,7 +7,7 @@ import MealContext from "../../context/meal/mealContext";
 const Navbar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
   const mealContext = useContext(MealContext);
-  const { isAuthenticated, logout, user } = authContext;
+  const { isAuthenticated, logout } = authContext;
   const { clearMeals } = mealContext;
 
   const onLogout = () => {
@@ -16,13 +16,27 @@ const Navbar = ({ title, icon }) => {
   };
   const authLinks = (
     <Fragment>
-      <li>Hello {user && user.name}</li>
-      <li>
-        <a onClick={onLogout} href="#!">
-          <i className="fas fa-sign-out-alt"></i>{" "}
-          <span className="hide-sm">Logout</span>
-        </a>
-      </li>
+      <div className="navbar-links navbar-no-selection">
+        <li>
+          <Link to="/planner">Planner</Link>
+        </li>
+        <li>
+          <Link to="/groceries">Groceries</Link>
+        </li>
+        <li>
+          <Link to="/meals">Meals</Link>
+        </li>
+
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <a onClick={onLogout} href="#!">
+            <i className="fas fa-sign-out-alt navbar-no-selection"></i>{" "}
+            <span className="hide-sm navbar-no-selection">Logout</span>
+          </a>
+        </li>
+      </div>
     </Fragment>
   );
   const guestLinks = (
@@ -36,10 +50,13 @@ const Navbar = ({ title, icon }) => {
     </Fragment>
   );
   return (
-    <div className="navbar bg-primary">
-      <h1>
-        <i className={icon} /> {title}
-      </h1>
+    <div className="navbar bg-primary navbar-no-selection">
+      <Link to="/">
+        <h1 className="navbar-no-selection">
+          <i className={icon} /> {title}
+        </h1>
+      </Link>
+
       <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
     </div>
   );
@@ -51,7 +68,7 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: "Meal keeper",
+  title: "Meal Keeper",
   icon: "fas fa-utensils",
 };
 

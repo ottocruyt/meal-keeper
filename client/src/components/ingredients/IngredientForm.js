@@ -75,6 +75,7 @@ const IngredientForm = (props) => {
                   max="9999"
                   step="any"
                 />
+
                 <Creatable
                   className="ingredients-form-select"
                   placeholder={<div>Search ingredient...</div>}

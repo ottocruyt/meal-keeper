@@ -4,7 +4,9 @@ export const About = () => {
   return (
     <div>
       <h1>About this App</h1>
-      <p className="my-1">This is a full stack Ract app for keeping meals</p>
+      <p className="my-1">
+        This is a full stack React application for keeping meals
+      </p>
       <p className="bg-dark p">
         <strong>Version: </strong> 1.0.0
       </p>

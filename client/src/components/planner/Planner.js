@@ -8,6 +8,7 @@ export const Planner = () => {
   const mealContext = useContext(MealContext);
   const {
     meals,
+    getMeals,
     selectedMeals,
     setSelectedMeals,
     getSelectedMeals,
@@ -25,8 +26,47 @@ export const Planner = () => {
 
   useEffect(() => {
     getSelectedMeals();
+    getMeals();
     // eslint-disable-next-line
   }, []);
+
+  const reactSelectStyles = {
+    container: (provided, state) => ({
+      ...provided,
+      padding: 0,
+      height: "fit-content",
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      minHeight: "fit-content",
+      height: "fit-content",
+    }),
+    valueContainer: (provided, state) => ({
+      ...provided,
+      height: "30px",
+      padding: "0 6px",
+    }),
+    indicatorsContainer: (provided, state) => ({
+      ...provided,
+      height: "auto",
+    }),
+    input: (provided, state) => ({
+      ...provided,
+      position: "absolute",
+      top: "50%",
+      height: "2rem",
+      margin: "0px",
+      verticalAlign: "middle",
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      position: "absolute",
+      top: "50%",
+      height: "2rem",
+      margin: "0px",
+      verticalAlign: "middle",
+    }),
+  };
 
   const week = [];
   const MAX_DAYS = 7;
@@ -111,6 +151,7 @@ export const Planner = () => {
                 </div>
                 <div className="day-card-container">
                   <Selectable
+                    styles={reactSelectStyles}
                     isClearable
                     className="planner-form-select"
                     placeholder={<div>Nothing selected. Search meal...</div>}
