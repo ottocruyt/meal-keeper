@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const IngredientSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
   },
   name: {
     type: String,

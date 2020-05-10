@@ -15,6 +15,9 @@ import {
   GET_MEALS,
   GET_ALL_INGREDIENTS,
   CLEAR_MEALS,
+  GET_SELECTED_MEALS,
+  SET_SELECTED_MEALS,
+  CLEAR_SELECTED_MEALS,
 } from "../types";
 
 const MealState = (props) => {
@@ -24,6 +27,8 @@ const MealState = (props) => {
     filtered: null,
     error: null,
     allIngredients: null,
+    selectedMeals: null,
+    loading: true,
   };
 
   const [state, dispatch] = useReducer(mealReducer, initialState);
@@ -39,13 +44,50 @@ const MealState = (props) => {
     }
   };
 
+  // GET SELECTED MEALS
+  const getSelectedMeals = async () => {
+    try {
+      const res = await axios.get("/api/selectedmeals");
+      dispatch({ type: GET_SELECTED_MEALS, payload: res.data });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: MEAL_ERROR, payload: err.response.msg });
+    }
+  };
+  // CLEAR SELECTED MEALS (put to empty array)
+  const clearSelectedMeals = async () => {
+    const config = {
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/selectedmeals", [], config);
+      dispatch({ type: CLEAR_SELECTED_MEALS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: MEAL_ERROR, payload: err.response.msg });
+    }
+  };
+
+  // SET SELECTED MEALS
+  const setSelectedMeals = async (selectedmeals) => {
+    const config = {
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/selectedmeals", selectedmeals, config);
+      dispatch({ type: SET_SELECTED_MEALS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: MEAL_ERROR, payload: err.response.msg });
+    }
+  };
+
   // GET INGREDIENTS OF ALL MEALS
   const getAllIngredients = async () => {
     try {
       const res = await axios.get("api/ingredients");
-      console.log("Got All ingredients:");
-      console.table(res.data);
-
       dispatch({ type: GET_ALL_INGREDIENTS, payload: res.data });
     } catch (err) {
       console.log(err);
@@ -127,6 +169,8 @@ const MealState = (props) => {
         filtered: state.filtered,
         error: state.error,
         allIngredients: state.allIngredients,
+        selectedMeals: state.selectedMeals,
+        loading: state.loading,
         addMeal,
         deleteMeal,
         setCurrent,
@@ -137,6 +181,9 @@ const MealState = (props) => {
         getMeals,
         clearMeals,
         getAllIngredients,
+        getSelectedMeals,
+        setSelectedMeals,
+        clearSelectedMeals,
       }}
     >
       {props.children}

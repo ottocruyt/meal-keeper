@@ -43,13 +43,14 @@ const MealForm = () => {
   const onChangeIngredients = (newIngredients) =>
     setMeal({ ...meal, ingredients: newIngredients });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (current === null) {
       addMeal(meal);
     } else {
       updateMeal(meal);
     }
+    await getAllIngredients();
     clearAll();
   };
 

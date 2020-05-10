@@ -10,10 +10,21 @@ import {
   CLEAR_FILTER,
   MEAL_ERROR,
   CLEAR_MEALS,
+  GET_SELECTED_MEALS,
+  SET_SELECTED_MEALS,
+  CLEAR_SELECTED_MEALS,
 } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_SELECTED_MEALS:
+    case SET_SELECTED_MEALS:
+    case CLEAR_SELECTED_MEALS:
+      return {
+        ...state,
+        selectedMeals: action.payload,
+        loading: false,
+      };
     case GET_MEALS:
       return {
         ...state,

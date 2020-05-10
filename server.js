@@ -12,6 +12,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // routes
+app.use("/api/selectedmeals", require("./routes/selectedmeals"));
 app.use("/api/ingredients", require("./routes/ingredients"));
 app.use("/api/meals", require("./routes/meals"));
 app.use("/api/users", require("./routes/users"));
