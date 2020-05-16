@@ -1,5 +1,6 @@
 export const GET_MEALS = "GET_MEALS";
 export const GET_ALL_INGREDIENTS = "GET_ALL_INGREDIENTS";
+export const GET_ALL_UNITS = "GET_ALL_UNITS";
 export const ADD_MEAL = "ADD_MEAL";
 export const DELETE_MEAL = "DELETE_MEAL";
 export const SET_CURRENT = "SET_CURRENT";

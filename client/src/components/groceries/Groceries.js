@@ -25,6 +25,7 @@ export const Groceries = () => {
             ingredientSums.push({
               name: object.ingredient,
               amount: object.amount,
+              unit: object.unit,
             });
           } else {
             ingredientSums[index].amount += object.amount;
@@ -62,10 +63,11 @@ export const Groceries = () => {
         <div className="groceries-container grid-2">
           {groceries.map((grocery) => {
             return (
-              <div className="grid-3 grocery-item-container" key={grocery.name}>
+              <div className="grid-4 grocery-item-container" key={grocery.name}>
                 <input type="checkbox" id="grocery-item-checkbox"></input>
-                <div>{grocery.name}</div>
                 <div>{grocery.amount}</div>
+                <div>{grocery.unit}</div>
+                <div>{grocery.name}</div>
               </div>
             );
           })}

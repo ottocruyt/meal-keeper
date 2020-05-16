@@ -21,7 +21,7 @@ export const Planner = () => {
       value: meal._id,
       label: meal.name,
     }));
-    console.log("options: ", options);
+    //console.log("options: ", options);
   }
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export const Planner = () => {
   const MAX_DAYS = 7;
 
   if (!loading && selectedMeals !== null && selectedMeals !== undefined) {
-    console.log("selected meals: ", selectedMeals);
+    //console.log("selected meals: ", selectedMeals);
     const selectedMealsArr = selectedMeals.meals;
     for (let i = 0; i < MAX_DAYS; i++) {
       const nextDay = new Date();
@@ -90,11 +90,11 @@ export const Planner = () => {
   }
 
   const selectHandleChange = (newValue, actionMeta, day) => {
-    console.group("Value Changed");
-    console.log(newValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.log(`date: ${day.day}`);
-    console.groupEnd();
+    //console.group("Value Changed");
+    //console.log(newValue);
+    //console.log(`action: ${actionMeta.action}`);
+    //console.log(`date: ${day.day}`);
+    //console.groupEnd();
     const selecetedMealsInForm = { ...selectedMeals };
     const index = selecetedMealsInForm.meals.findIndex((meal) =>
       moment(day.day).isSame(meal.date, "day")
@@ -114,15 +114,15 @@ export const Planner = () => {
       // update day to newly selected meal
       if (newValue === null) {
         // selected meal was cleared
-        console.log(
-          "Selected meals in form before splice:",
-          selecetedMealsInForm
-        );
+        //console.log(
+        //  "Selected meals in form before splice:",
+        //  selecetedMealsInForm
+        //);
         selecetedMealsInForm["meals"].splice(index, 1);
-        console.log(
-          "Selected meals in form after splice:",
-          selecetedMealsInForm
-        );
+        //console.log(
+        //  "Selected meals in form after splice:",
+        //  selecetedMealsInForm
+        //);
       } else {
         // selected meal was changed
         selecetedMealsInForm["meals"][index].meal._id = newValue.value;

@@ -1,6 +1,7 @@
 import {
   GET_MEALS,
   GET_ALL_INGREDIENTS,
+  GET_ALL_UNITS,
   ADD_MEAL,
   DELETE_MEAL,
   SET_CURRENT,
@@ -36,6 +37,12 @@ export default (state, action) => {
         ...state,
         loading: false,
         allIngredients: action.payload,
+      };
+    case GET_ALL_UNITS:
+      return {
+        ...state,
+        loading: false,
+        allUnits: action.payload,
       };
     case ADD_MEAL:
       return {

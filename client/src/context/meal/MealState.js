@@ -14,6 +14,7 @@ import {
   MEAL_ERROR,
   GET_MEALS,
   GET_ALL_INGREDIENTS,
+  GET_ALL_UNITS,
   CLEAR_MEALS,
   GET_SELECTED_MEALS,
   SET_SELECTED_MEALS,
@@ -27,6 +28,7 @@ const MealState = (props) => {
     filtered: null,
     error: null,
     allIngredients: null,
+    allUnits: null,
     selectedMeals: null,
     loading: true,
   };
@@ -95,6 +97,17 @@ const MealState = (props) => {
     }
   };
 
+  // GET UNITS OF ALL MEALS
+  const getAllUnits = async () => {
+    try {
+      const res = await axios.get("api/units");
+      dispatch({ type: GET_ALL_UNITS, payload: res.data });
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: MEAL_ERROR, payload: err.response.msg });
+    }
+  };
+
   // ADD MEAL
   const addMeal = async (meal) => {
     const config = {
@@ -122,8 +135,8 @@ const MealState = (props) => {
 
   // UPDATE CURRENT MEAL
   const updateMeal = async (meal) => {
-    console.log("Updating meal:");
-    console.log(meal);
+    //console.log("Updating meal:");
+    //console.log(meal);
 
     const config = {
       headers: {
@@ -169,6 +182,7 @@ const MealState = (props) => {
         filtered: state.filtered,
         error: state.error,
         allIngredients: state.allIngredients,
+        allUnits: state.allUnits,
         selectedMeals: state.selectedMeals,
         loading: state.loading,
         addMeal,
@@ -181,6 +195,7 @@ const MealState = (props) => {
         getMeals,
         clearMeals,
         getAllIngredients,
+        getAllUnits,
         getSelectedMeals,
         setSelectedMeals,
         clearSelectedMeals,

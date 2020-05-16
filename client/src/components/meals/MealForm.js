@@ -9,7 +9,9 @@ const MealForm = () => {
     current,
     updateMeal,
     getAllIngredients,
+    getAllUnits,
     allIngredients,
+    allUnits,
     loading,
   } = mealContext;
 
@@ -18,6 +20,7 @@ const MealForm = () => {
     category: "dinner",
     ingredients: [],
     allIngredients: [],
+    allUnits: [],
   });
 
   useEffect(() => {
@@ -36,6 +39,7 @@ const MealForm = () => {
 
   useEffect(() => {
     getAllIngredients();
+    getAllUnits();
     // eslint-disable-next-line
   }, []);
 
@@ -51,6 +55,7 @@ const MealForm = () => {
       updateMeal(meal);
     }
     await getAllIngredients();
+    await getAllUnits();
     clearAll();
   };
 
@@ -73,6 +78,7 @@ const MealForm = () => {
         <IngredientForm
           ingredients={ingredients}
           allIngredients={allIngredients}
+          allUnits={allUnits}
           onChange={onChangeIngredients}
         />
       )}

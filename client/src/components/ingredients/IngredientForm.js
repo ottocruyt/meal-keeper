@@ -5,6 +5,7 @@ import Creatable from "react-select/creatable";
 const IngredientForm = (props) => {
   const ingredients = props.ingredients;
   const allIngredients = props.allIngredients;
+  const allUnits = props.allUnits;
   let options = [];
   if (allIngredients && allIngredients.length) {
     options = allIngredients.map((ingredient) => ({
@@ -13,16 +14,24 @@ const IngredientForm = (props) => {
     }));
     //console.log(options);
   }
+  let unitOptions = [];
+  if (allUnits && allUnits.length) {
+    unitOptions = allUnits.map((unit) => ({
+      value: unit,
+      label: unit,
+    }));
+    console.log(options);
+  }
 
   const onChange = (index, e) => {
     const ingredientsInForm = [...ingredients];
     if (e.target.name === "amount") {
       const number = e.target.value; //replace(",", ".");
-      console.log(number);
+      //console.log(number);
       const parsedNumber = parseFloat(number);
       if (!isNaN(parsedNumber)) {
         ingredientsInForm[index].amount = parseFloat(number);
-        console.log("ingredient amount accepted and push up");
+        //console.log("ingredient amount accepted and push up");
         props.onChange(ingredientsInForm);
       }
     }
@@ -31,7 +40,7 @@ const IngredientForm = (props) => {
   const addNewIngredient = () => {
     const ingredientsInForm = [...ingredients];
     const id = uuidv4();
-    ingredientsInForm.push({ id, amount: "", ingredient: "" });
+    ingredientsInForm.push({ id, amount: "", ingredient: "", unit: "" });
     props.onChange(ingredientsInForm);
   };
 
@@ -58,6 +67,23 @@ const IngredientForm = (props) => {
     //console.groupEnd();
   };
 
+  const selectHandleChangeUnit = (newValue, actionMeta, index) => {
+    //console.group("Value Changed");
+    //console.log(newValue);
+    //console.log(`action: ${actionMeta.action}`);
+    //console.groupEnd();
+    const ingredientsInForm = [...ingredients];
+    ingredientsInForm[index].unit = newValue.value;
+    props.onChange(ingredientsInForm);
+  };
+
+  const selectHandleInputChangeUnit = (inputValue, actionMeta, index) => {
+    //console.group("Input Changed");
+    //console.log(inputValue);
+    //console.log(`action: ${actionMeta.action}`);
+    //console.groupEnd();
+  };
+
   return (
     <Fragment>
       <ul className="ingredients-form">
@@ -74,6 +100,24 @@ const IngredientForm = (props) => {
                   min="0"
                   max="9999"
                   step="any"
+                />
+
+                <Creatable
+                  className="ingredients-form-select"
+                  placeholder={<div>unit...</div>}
+                  name="unit"
+                  value={
+                    object.unit === ""
+                      ? ""
+                      : { value: object.unit, label: object.unit }
+                  }
+                  onChange={(newValue, actionMeta) =>
+                    selectHandleChangeUnit(newValue, actionMeta, index)
+                  }
+                  onInputChange={(inputValue, actionMeta) =>
+                    selectHandleInputChangeUnit(inputValue, actionMeta, index)
+                  }
+                  options={unitOptions}
                 />
 
                 <Creatable

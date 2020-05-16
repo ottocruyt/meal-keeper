@@ -30,6 +30,9 @@ const MealSchema = mongoose.Schema({
         type: String, //mongoose.Schema.Types.ObjectId
         //ref: "ingredients",
       },
+      unit: {
+        type: String,
+      },
     },
   ],
 });

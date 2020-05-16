@@ -29,13 +29,13 @@ router.get("/", auth, async (req, res) => {
           const filtered = selectedmeals.meals.filter((meal) => {
             const mealDate = new Date(meal.date);
             /*
-            console.log(`Today: ${today} vs ${mealDate}`);
-            console.log(
-              "is not before: ",
-              !moment(mealDate).isBefore(today, "day")
+            //console.log(`Today: ${today} vs ${mealDate}`);
+            //console.log(
+            //  "is not before: ",
+            //  !moment(mealDate).isBefore(today, "day")
             );
             */
-            console.log(`meal at ${mealDate} is ${meal}`);
+            //console.log(`meal at ${mealDate} is ${meal}`);
             return !(
               moment(mealDate).isBefore(today, "day") ||
               meal.meal === null ||
@@ -44,7 +44,7 @@ router.get("/", auth, async (req, res) => {
             ); // if it is not before today AND nothing, keep it.
           });
           selectedmeals.meals = filtered;
-          console.log("after filtering: ", selectedmeals);
+          //console.log("after filtering: ", selectedmeals);
           //console.log("success");
           res.json(selectedmeals);
         }
@@ -60,7 +60,7 @@ router.get("/", auth, async (req, res) => {
 // @access				Private
 router.post("/", auth, async (req, res) => {
   const { meals } = req.body;
-  console.log("req body selected meals: ", meals);
+  //console.log("req body selected meals: ", meals);
 
   try {
     // first get the users current selected meals:
@@ -84,7 +84,7 @@ router.post("/", auth, async (req, res) => {
             console.error(err);
             res.status(500).send("server error");
           } else {
-            console.log("selectedmeals after pop: ", newSelectedMeals);
+            //console.log("selectedmeals after pop: ", newSelectedMeals);
             const today = new Date();
             const filtered = newSelectedMeals.meals.filter((meal) => {
               const mealDate = new Date(meal.date);
@@ -96,10 +96,10 @@ router.post("/", auth, async (req, res) => {
               ); // if it is not ... before today AND nothing, keep it
             });
             newSelectedMeals.meals = filtered;
-            console.log(
-              "selectedmeals after pop with filter: ",
-              newSelectedMeals
-            );
+            //console.log(
+            //  "selectedmeals after pop with filter: ",
+            //  newSelectedMeals
+            //);
             res.json(newSelectedMeals);
           }
         });
