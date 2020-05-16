@@ -71,6 +71,7 @@ export const Register = (props) => {
             value={email}
             onChange={onChange}
             required
+            autoComplete="username"
           />
         </div>
         <div className="form-group">
@@ -82,6 +83,7 @@ export const Register = (props) => {
             onChange={onChange}
             required
             minLength="6"
+            autoComplete="new-password"
           />
         </div>
 
@@ -94,6 +96,7 @@ export const Register = (props) => {
             onChange={onChange}
             required
             minLength="6"
+            autoComplete="new-password"
           />
         </div>
         <input

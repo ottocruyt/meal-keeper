@@ -56,7 +56,7 @@ export const Login = (props) => {
             value={email}
             onChange={onChange}
             required
-            autoComplete="email"
+            autoComplete="username"
           />
         </div>
         <div className="form-group">

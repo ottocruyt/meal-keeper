@@ -20,7 +20,7 @@ const IngredientForm = (props) => {
       value: unit,
       label: unit,
     }));
-    console.log(options);
+    //console.log(options);
   }
 
   const onChange = (index, e) => {
