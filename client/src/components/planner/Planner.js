@@ -140,7 +140,6 @@ export const Planner = () => {
 
   return (
     <Fragment>
-      <h2 className="text-primary">Planner</h2>
       {!loading ? (
         <div className="grid-7 week-container">
           {week.map((day) => {
@@ -154,7 +153,7 @@ export const Planner = () => {
                     styles={reactSelectStyles}
                     isClearable
                     className="planner-form-select"
-                    placeholder={<div>Nothing selected. Search meal...</div>}
+                    placeholder={<div>Search meal...</div>}
                     name="meal"
                     value={
                       day.meal_id === "" || null

@@ -58,7 +58,6 @@ export const Groceries = () => {
 
   return (
     <Fragment>
-      <h2 className="text-primary">Groceries</h2>
       {!loading ? (
         <div className="groceries-container grid-2">
           {groceries.map((grocery) => {
