@@ -4,6 +4,7 @@ import App from "./App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
+/*
 if ("serviceWorker" in navigator) {
   // register service worker
   navigator.serviceWorker
@@ -15,3 +16,4 @@ if ("serviceWorker" in navigator) {
       console.error("Error during service worker registration:", e);
     });
 }
+*/
