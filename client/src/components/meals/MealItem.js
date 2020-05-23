@@ -15,6 +15,8 @@ export const MealItem = ({ meal }) => {
     clearCurrent();
   };
 
+  // TODO: remove the meal category. OR allow more meals per day to be selected and add breakfast, lunch, dinner, desert.
+
   return (
     <div className="card bg-light">
       <h3 className="text-primary text-left">

@@ -88,13 +88,13 @@ export const Planner = () => {
       week.push(nextDayMeal);
     }
   }
-
+  // TODO: if trying to select on the bottom of the screen, it overflows below the screen...
   const selectHandleChange = (newValue, actionMeta, day) => {
-    //console.group("Value Changed");
-    //console.log(newValue);
-    //console.log(`action: ${actionMeta.action}`);
-    //console.log(`date: ${day.day}`);
-    //console.groupEnd();
+    console.group("Value Changed");
+    console.log(newValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.log(`date: ${day.day}`);
+    console.groupEnd();
     const selecetedMealsInForm = { ...selectedMeals };
     const index = selecetedMealsInForm.meals.findIndex((meal) =>
       moment(day.day).isSame(meal.date, "day")
@@ -132,10 +132,16 @@ export const Planner = () => {
   };
 
   const selectHandleInputChange = (inputValue, actionMeta, day) => {
-    //console.group("Input Changed");
-    //console.log(inputValue);
-    //console.log(`action: ${actionMeta.action}`);
-    //console.groupEnd();
+    if (actionMeta.action === "input-blur") {
+      // user clicked away next to the selectable
+      // select the previously selected meal again = 'cancel'
+      const selecetedMealsInForm = { ...selectedMeals };
+      setSelectedMeals(selecetedMealsInForm);
+    }
+    console.group("Input Changed");
+    console.log(inputValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
   };
 
   return (

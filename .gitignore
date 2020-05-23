@@ -4,5 +4,7 @@ node_modules/
 /client/.env.development.local
 /client/.env.test.local
 /client/.env.production.local
+/client/build
+/client/debug.log
 
 npm-debug.log*

@@ -56,6 +56,9 @@ export const Groceries = () => {
     );
   }
 
+  // TODO: the list is not pretty and certainly not on mobile
+  // TODO: the remember the "checked" groceries instead of forgetting after refresh. Maybe not in database...
+
   return (
     <Fragment>
       {!loading ? (
