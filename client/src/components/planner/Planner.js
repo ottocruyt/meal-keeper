@@ -88,7 +88,6 @@ export const Planner = () => {
       week.push(nextDayMeal);
     }
   }
-  // TODO: if trying to select on the bottom of the screen, it overflows below the screen...
   const selectHandleChange = (newValue, actionMeta, day) => {
     console.group("Value Changed");
     console.log(newValue);
@@ -157,6 +156,7 @@ export const Planner = () => {
                 <div className="day-card-container">
                   <Selectable
                     styles={reactSelectStyles}
+                    menuPlacement="auto"
                     isClearable
                     className="planner-form-select"
                     placeholder={<div>Search meal...</div>}

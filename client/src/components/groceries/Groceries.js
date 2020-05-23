@@ -56,8 +56,8 @@ export const Groceries = () => {
     );
   }
 
-  // TODO: the list is not pretty and certainly not on mobile
-  // TODO: the remember the "checked" groceries instead of forgetting after refresh. Maybe not in database...
+  // TODO: the list is not pretty
+  // TODO: the remember the "checked" groceries instead of forgetting after refresh. Maybe not in database... but in localStorage
 
   return (
     <Fragment>
@@ -65,7 +65,7 @@ export const Groceries = () => {
         <div className="groceries-container grid-2">
           {groceries.map((grocery) => {
             return (
-              <div className="grid-4 grocery-item-container" key={grocery.name}>
+              <div className="grocery-item-container" key={grocery.name}>
                 <input type="checkbox" id="grocery-item-checkbox"></input>
                 <div>{grocery.amount}</div>
                 <div>{grocery.unit}</div>

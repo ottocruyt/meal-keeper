@@ -471,8 +471,8 @@ table th {
   grid-gap: 0.1em;
 }
 .grocery-item-container {
-  grid-template-columns: 10% 15% 25% 50%;
-  grid-gap: 0.1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 5fr;
 }
 #grocery-item-checkbox {
   margin: 0;

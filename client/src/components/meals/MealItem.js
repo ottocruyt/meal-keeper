@@ -47,7 +47,10 @@ export const MealItem = ({ meal }) => {
       <p>
         <button
           className="btn btn-dark btn-sm"
-          onClick={() => setCurrent(meal)}
+          onClick={() => {
+            window.scrollTo(0, 0); // scroll to top so editable meal is visable
+            setCurrent(meal);
+          }}
         >
           Edit
         </button>
