@@ -20,10 +20,10 @@ app.use("/api/users", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
 
 // serve static assets in production
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "client", "build")));
 //build mode
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/public/index.html"));
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 /*
