@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useContext } from "react";
 import MealContext from "../../context/meal/mealContext";
-import Spinner from "../layout/Spinner";
+import Spinner from "../spinner/Spinner";
 
 export const Groceries = () => {
   const mealContext = useContext(MealContext);

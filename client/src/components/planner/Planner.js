@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useContext } from "react";
 import moment from "moment";
 import MealContext from "../../context/meal/mealContext";
-import Spinner from "../layout/Spinner";
+import Spinner from "../spinner/Spinner";
 import Selectable from "react-select";
 
 export const Planner = () => {
