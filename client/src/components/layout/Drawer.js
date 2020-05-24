@@ -147,12 +147,12 @@ function ResponsiveDrawer() {
             <RestaurantIcon />
           </div>
           <div>
-            <Typography variant="h6" noWrap>
+            <Typography variant="h5" noWrap>
               Meal Keeper
             </Typography>
           </div>
           <div style={{ marginLeft: "auto", textTransform: "capitalize" }}>
-            <Typography variant="h6" noWrap>
+            <Typography variant="h5" noWrap>
               {getPageTitleFromPathName(useLocation().pathname)}
             </Typography>
           </div>

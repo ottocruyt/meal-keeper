@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import MealContext from "../../context/meal/mealContext";
 import IngredientForm from "../ingredients/IngredientForm";
+import { Typography } from "@material-ui/core";
+
 const MealForm = () => {
   const mealContext = useContext(MealContext);
   const {
@@ -65,7 +67,7 @@ const MealForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2 className="text-primary">{current ? "Edit Meal" : "Add Meal"}</h2>
+      <Typography variant="h4">{current ? "Edit Meal" : "Add Meal"}</Typography>
       <input
         type="text"
         placeholder="Name"
@@ -73,7 +75,7 @@ const MealForm = () => {
         value={name}
         onChange={onChange}
       />
-      <h5>Meal Ingredients</h5>
+      <Typography variant="h5">Meal Ingredients</Typography>
       {!loading && (
         <IngredientForm
           ingredients={ingredients}
@@ -82,7 +84,7 @@ const MealForm = () => {
           onChange={onChangeIngredients}
         />
       )}
-      <h5>Meal Category</h5>
+      <Typography variant="h5">Meal Category</Typography>
       <input
         type="radio"
         name="category"

@@ -16,6 +16,8 @@ export const MealItem = ({ meal }) => {
   };
 
   // TODO: remove the meal category. OR allow more meals per day to be selected and add breakfast, lunch, dinner, desert.
+  // TODO: change buttons to material UI button
+  // TODO: change meal title to material UI Typography
 
   return (
     <div className="card bg-light">

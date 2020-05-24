@@ -1,16 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Typography } from "@material-ui/core";
 
 export const About = () => {
   return (
-    <div>
-      <h1>About this App</h1>
-      <p className="my-1">
-        This is a full stack React application for keeping meals
-      </p>
-      <p className="bg-dark p">
-        <strong>Version: </strong> 1.0.0
-      </p>
-    </div>
+    <Fragment>
+      <Typography variant="body1">
+        This is a full stack React application for keeping meals.
+      </Typography>
+      <Typography variant="body1">
+        Trying to make a grocery list for the next week is quite time consuming.
+        This app makes it effortless.
+      </Typography>
+    </Fragment>
   );
 };
 

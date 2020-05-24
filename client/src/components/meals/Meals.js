@@ -3,6 +3,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import MealItem from "../meals/MealItem";
 import MealContext from "../../context/meal/mealContext";
 import Spinner from "../spinner/Spinner";
+import { Typography } from "@material-ui/core";
 
 const Meals = () => {
   const mealContext = useContext(MealContext);
@@ -15,7 +16,7 @@ const Meals = () => {
   }, []);
 
   if (meals !== null && meals.length === 0 && !loading) {
-    return <h4>Please add a meal...</h4>;
+    return <Typography variant="h5">Please add a meal...</Typography>;
   }
 
   return (

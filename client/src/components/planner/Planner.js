@@ -3,6 +3,10 @@ import moment from "moment";
 import MealContext from "../../context/meal/mealContext";
 import Spinner from "../spinner/Spinner";
 import Selectable from "react-select";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
+import { Typography } from "@material-ui/core";
+import FastfoodIcon from "@material-ui/icons/Fastfood";
 
 export const Planner = () => {
   const mealContext = useContext(MealContext);
@@ -87,6 +91,14 @@ export const Planner = () => {
       }
       week.push(nextDayMeal);
     }
+  } else {
+    // user hasnt selected any meals yet
+    for (let i = 0; i < MAX_DAYS; i++) {
+      const nextDay = new Date();
+      nextDay.setDate(nextDay.getDate() + i);
+      const nextDayMeal = { day: nextDay, meal_id: "" };
+      week.push(nextDayMeal);
+    }
   }
   const selectHandleChange = (newValue, actionMeta, day) => {
     console.group("Value Changed");
@@ -143,6 +155,26 @@ export const Planner = () => {
     console.groupEnd();
   };
 
+  if (
+    (meals === null || meals === undefined || meals.length === 0) &&
+    !loading
+  ) {
+    // no meals added yet
+    return (
+      <Fragment>
+        <Typography variant="h4">No meals...</Typography>
+        <FastfoodIcon style={{ fontSize: "10rem" }} />
+        <Typography variant="subtitle1">
+          Add a meal in the{" "}
+          <Link component={RouterLink} to="/meals" variant="subtitle1">
+            Meals
+          </Link>{" "}
+          section.
+        </Typography>
+      </Fragment>
+    );
+  }
+  // TODO: change date to material UI typography
   return (
     <Fragment>
       {!loading ? (
@@ -156,6 +188,7 @@ export const Planner = () => {
                 <div className="day-card-container">
                   <Selectable
                     styles={reactSelectStyles}
+                    noOptionsMessage={() => "Add meals first!"}
                     menuPlacement="auto"
                     isClearable
                     className="planner-form-select"

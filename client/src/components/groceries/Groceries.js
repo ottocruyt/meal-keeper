@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect, useContext } from "react";
 import MealContext from "../../context/meal/mealContext";
 import Spinner from "../spinner/Spinner";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
+import { Typography } from "@material-ui/core";
+import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 
 export const Groceries = () => {
   const mealContext = useContext(MealContext);
@@ -48,10 +52,15 @@ export const Groceries = () => {
   ) {
     return (
       <Fragment>
-        <h2 className="text-primary">Groceries</h2>
-        <div className="text-center">
-          No groceries... Please select a meal in the planner.
-        </div>
+        <Typography variant="h4">No groceries...</Typography>
+        <RemoveShoppingCartIcon style={{ fontSize: "10rem" }} />
+        <Typography variant="subtitle1">
+          Please select a meal in the{" "}
+          <Link component={RouterLink} to="/planner" variant="subtitle1">
+            Planner
+          </Link>
+          .
+        </Typography>
       </Fragment>
     );
   }
