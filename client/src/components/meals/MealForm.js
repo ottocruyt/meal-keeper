@@ -84,7 +84,8 @@ const MealForm = () => {
           onChange={onChangeIngredients}
         />
       )}
-      {/*
+      {
+        /*
       <Typography variant="h5">Meal Category</Typography>
       <input
         type="radio"
@@ -102,13 +103,15 @@ const MealForm = () => {
         onChange={onChange}
       />{" "}
       Dessert
-      <div>
-        <input
-          type="submit"
-          value={current ? "Update Meal" : "Add Meal"}
-          className="btn btn-primary btn-block"
-        />
-      </div> */}
+      */
+        <div>
+          <input
+            type="submit"
+            value={current ? "Update Meal" : "Add Meal"}
+            className="btn btn-primary btn-block"
+          />
+        </div>
+      }
       {current && (
         <div>
           <button className="btn btn-light btn-block" onClick={clearAll}>

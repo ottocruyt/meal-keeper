@@ -564,7 +564,7 @@ a {
 }
 
 /* Mobile Styles */
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .hide-sm {
     display: none;
   }
