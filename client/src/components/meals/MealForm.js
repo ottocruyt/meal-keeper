@@ -70,12 +70,12 @@ const MealForm = () => {
       <Typography variant="h4">{current ? "Edit Meal" : "Add Meal"}</Typography>
       <input
         type="text"
-        placeholder="Name"
+        placeholder="Meal Name"
         name="name"
         value={name}
         onChange={onChange}
       />
-      <Typography variant="h5">Meal Ingredients</Typography>
+      <Typography variant="h6">Ingredients</Typography>
       {!loading && (
         <IngredientForm
           ingredients={ingredients}
@@ -84,6 +84,7 @@ const MealForm = () => {
           onChange={onChangeIngredients}
         />
       )}
+      {/*
       <Typography variant="h5">Meal Category</Typography>
       <input
         type="radio"
@@ -107,7 +108,7 @@ const MealForm = () => {
           value={current ? "Update Meal" : "Add Meal"}
           className="btn btn-primary btn-block"
         />
-      </div>
+      </div> */}
       {current && (
         <div>
           <button className="btn btn-light btn-block" onClick={clearAll}>

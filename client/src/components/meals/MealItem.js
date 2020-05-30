@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import MealContext from "../../context/meal/mealContext";
 import Collapsible from "react-collapsible";
+import { Typography } from "@material-ui/core";
 
 export const MealItem = ({ meal }) => {
   const mealContext = useContext(MealContext);
@@ -21,9 +22,9 @@ export const MealItem = ({ meal }) => {
 
   return (
     <div className="card bg-light">
-      <h3 className="text-primary text-left">
+      <Typography variant="h6">
         {name}{" "}
-        <span
+        {/*<span
           style={{ float: "right" }}
           className={
             "badge " +
@@ -31,8 +32,8 @@ export const MealItem = ({ meal }) => {
           }
         >
           {category.charAt(0).toUpperCase() + category.slice(1)}
-        </span>
-      </h3>
+        </span>*/}
+      </Typography>
       {ingredients.length !== 0 && (
         <Collapsible trigger={<i className="fas fa-shopping-basket"></i>}>
           <ul className="list">

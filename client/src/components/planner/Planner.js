@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useContext } from "react";
+import React, { Fragment, useEffect, useContext, useState } from "react";
 import moment from "moment";
 import MealContext from "../../context/meal/mealContext";
 import Spinner from "../spinner/Spinner";
@@ -27,6 +27,7 @@ export const Planner = () => {
     }));
     //console.log("options: ", options);
   }
+  const [selectedMealsState, setSelectedMealsState] = useState(null);
 
   useEffect(() => {
     getSelectedMeals();
@@ -100,59 +101,84 @@ export const Planner = () => {
       week.push(nextDayMeal);
     }
   }
+
   const selectHandleChange = (newValue, actionMeta, day) => {
     console.group("Value Changed");
     console.log(newValue);
     console.log(`action: ${actionMeta.action}`);
     console.log(`date: ${day.day}`);
     console.groupEnd();
-    const selecetedMealsInForm = { ...selectedMeals };
-    const index = selecetedMealsInForm.meals.findIndex((meal) =>
-      moment(day.day).isSame(meal.date, "day")
-    );
-    if (index === -1) {
-      // day was empty and new value is not null (not cleared)
-      // add meal to selected meals
+    if (
+      actionMeta.action === "select-option" ||
+      actionMeta.action === "clear"
+    ) {
+      const selecetedMealsInForm = { ...selectedMeals };
+      const index = selecetedMealsInForm.meals.findIndex((meal) =>
+        moment(day.day).isSame(meal.date, "day")
+      );
+      if (index === -1) {
+        // day was empty and new value is not null (not cleared)
+        // add meal to selected meals
 
-      const meals = [...selecetedMealsInForm.meals];
-      meals.push({
-        date: day.day,
-        meal: newValue === null ? null : newValue.value,
-      });
-      selecetedMealsInForm["meals"] = meals;
-    } else {
-      // there was already a meal selected for that day
-      // update day to newly selected meal
-      if (newValue === null) {
-        // selected meal was cleared
-        //console.log(
-        //  "Selected meals in form before splice:",
-        //  selecetedMealsInForm
-        //);
-        selecetedMealsInForm["meals"].splice(index, 1);
-        //console.log(
-        //  "Selected meals in form after splice:",
-        //  selecetedMealsInForm
-        //);
+        const meals = [...selecetedMealsInForm.meals];
+        meals.push({
+          date: day.day,
+          meal: newValue === null ? null : newValue.value,
+        });
+        selecetedMealsInForm["meals"] = meals;
       } else {
-        // selected meal was changed
-        selecetedMealsInForm["meals"][index].meal._id = newValue.value;
+        // there was already a meal selected for that day
+        // update day to newly selected meal
+        if (newValue === null) {
+          // selected meal was cleared
+          //console.log(
+          //  "Selected meals in form before splice:",
+          //  selecetedMealsInForm
+          //);
+          selecetedMealsInForm["meals"].splice(index, 1);
+          //console.log(
+          //  "Selected meals in form after splice:",
+          //  selecetedMealsInForm
+          //);
+        } else {
+          // selected meal was changed
+          selecetedMealsInForm["meals"][index].meal._id = newValue.value;
+        }
       }
+      //console.log("Selected meals in form after change: ", selecetedMealsInForm);
+      setSelectedMealsState(selecetedMealsInForm); // UI
+      setSelectedMeals(selecetedMealsInForm); // database
+    } else {
+      console.log("value changed but not cleared or selected");
     }
-    setSelectedMeals(selecetedMealsInForm);
   };
 
   const selectHandleInputChange = (inputValue, actionMeta, day) => {
+    /*
     if (actionMeta.action === "input-blur") {
       // user clicked away next to the selectable
       // select the previously selected meal again = 'cancel'
       const selecetedMealsInForm = { ...selectedMeals };
-      setSelectedMeals(selecetedMealsInForm);
+      // console.log(
+      //   "Selected meals in form after input change: ",
+      //   selecetedMealsInForm
+      // );
+      setSelectedMealsState(selecetedMealsInForm); // UI
+      setSelectedMeals(selecetedMealsInForm); // database
     }
+   */
+
     console.group("Input Changed");
     console.log(inputValue);
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
+  };
+
+  const selectHandleBlur = () => {
+    console.log("on blur..."); // this will reset to originally, assuming its not unblurring on selecting an option
+    const selecetedMealsInForm = { ...selectedMeals };
+    setSelectedMealsState(selecetedMealsInForm); // UI
+    setSelectedMeals(selecetedMealsInForm); // database
   };
 
   if (
@@ -188,14 +214,20 @@ export const Planner = () => {
                 <div className="day-card-container">
                   <Selectable
                     styles={reactSelectStyles}
-                    noOptionsMessage={() => "Add meals first!"}
+                    noOptionsMessage={() => "No meals found"}
+                    isSearchable={true}
+                    escapeClearsValue
+                    onBlur={selectHandleBlur}
+                    blurInputOnSelect={false}
                     menuPlacement="auto"
                     isClearable
                     className="planner-form-select"
-                    placeholder={<div>Search meal...</div>}
+                    placeholder="Search meal..."
                     name="meal"
                     value={
-                      day.meal_id === "" || null
+                      day.meal_id === "" ||
+                      day.meal_id === null ||
+                      day.meal_id === undefined
                         ? null
                         : { value: day.meal_id, label: day.meal_name }
                     }
