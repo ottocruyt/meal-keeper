@@ -40,7 +40,7 @@ export const MealItem = ({ meal }) => {
             {ingredients.map((object) => {
               return (
                 <li key={object.ingredient}>
-                  {object.amount} {object.ingredient}
+                  {object.amount} {object.unit} {object.ingredient}
                 </li>
               );
             })}

@@ -18,7 +18,7 @@ router.get("/", auth, async (req, res) => {
     meals.forEach((meal) => {
       meal.ingredients.forEach((object) => {
         if (!allIngredients.find((val) => val === object.ingredient)) {
-          allIngredients.push(object.ingredient);
+          allIngredients.push(object.ingredient.toLowerCase());
         }
       });
     });

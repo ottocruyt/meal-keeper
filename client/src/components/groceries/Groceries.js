@@ -27,7 +27,7 @@ export const Groceries = () => {
           );
           if (index === -1) {
             ingredientSums.push({
-              name: object.ingredient,
+              name: object.ingredient.toLowerCase(),
               amount: object.amount,
               unit: object.unit,
             });
@@ -37,6 +37,14 @@ export const Groceries = () => {
         });
       });
       //console.log("summed up = ", ingredientSums);
+      console.log("unsorted: ", ingredientSums);
+
+      ingredientSums.sort((a, b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+        return 0;
+      });
+      console.log("sorted: ", ingredientSums);
       return ingredientSums;
     }
   };
